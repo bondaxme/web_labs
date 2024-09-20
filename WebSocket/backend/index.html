@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat Application</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="chat-container">
+    <h1>Чат</h1>
+
+    <div class="room-selection">
+      <input class="nickname" placeholder="Введіть ваш нікнейм" autocomplete="off" /><br />
+      <input class="room" placeholder="Номер кімнати" autocomplete="off" /><br />
+      <button class="join-btn">Приєднатись до кімнати</button>
+    </div>
+
+    <div class="chat">
+      <ul class="messages"></ul>
+      <form action="">
+        <input class="message-input" autocomplete="off" placeholder="Введіть повідомлення..." /><button>Відправити</button>
+      </form>
+      <button class="leave-btn">Вийти з кімнати</button>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(function () {
+    var socket = io();
+    var nickname = '';
+    var room = '';
+
+    $('.join-btn').click(function () {
+        nickname = $('.nickname').val();
+        room = $('.room').val();
+
+        if (nickname && room) {
+        socket.emit('join room', { nickname: nickname, room: room });
+        
+        $('.room-selection').hide();
+        $('.chat').show();
+        }
+    });
+
+    $('form').submit(function (e) {
+        e.preventDefault();
+        var message = $('.message-input').val();
+        socket.emit('chat message', message);
+        $('.message-input').val('');
+        return false;
+    });
+
+    socket.on('chat message', function (msg) {
+        var isOwnMessage = msg.startsWith(nickname + ':');
+        var messageClass = isOwnMessage ? 'own-message' : 'other-message';
+        $('.messages').append($('<li>').addClass(messageClass).text(msg));
+    });
+
+    $('.leave-btn').click(function () {
+        socket.emit('leave room', { nickname: nickname, room: room });
+        
+        $('.room-selection').show();
+        $('.chat').hide();
+        $('.messages').empty();
+    });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+.carItem {
+  display: flex;
+  flex-direction: row;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  padding: 20px 0;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 60%;
+  margin: 1rem auto;
+  transition: background-color 0.3s ease;
+}
+
+.carItem:hover {
+  background-color: #bec2c5;
+}
+
+.carItemHeader {
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  min-width: 10%;
+}
+
+.carItemHeader p {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.carItemDetails {
+  font-size: 16px;
+  display: flex;
+  flex: 2;
+  justify-content: space-around;
+  min-width: 70%;
+}
+
+.carItemDetails p {
+  min-width: 16%;
+  max-width: 16%;
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.carItemActions {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-width: 20%;
+}
+
+.carItemActions button {
+  font-family: "SF Pro Display Regular";
+  border: none;
+  width: 30%;
+  font-size: 14px;
+  padding: 6px;
+  border-radius: 18px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.carItemActions button:hover {
+  background-color: #0056b3;
+}

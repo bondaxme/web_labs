@@ -1,0 +1,25 @@
+.header {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.625rem;
+    background-color: var(--elements-color);
+    color: var(--text-color);
+    height: 4.5rem;
+    margin-bottom: 2.3rem;
+  }
+
+.menu a {
+    color: var(--text-color);
+    text-decoration: none;
+    margin: 0 1rem;
+};
+
+.menu a:hover {
+    color: var(--accent-color);
+}
+  
+.menu a:active {
+    color: var(--active-color);
+}
