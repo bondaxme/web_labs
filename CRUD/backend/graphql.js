@@ -45,7 +45,7 @@ const RootQuery = new GraphQLObjectType({
     fields: {
         cars: {
             type: new GraphQLList(CarType),
-            resolve() {
+            resolve(parent, args) {
                 return Car.find();
             }
         }
@@ -66,7 +66,7 @@ const Mutation = new GraphQLObjectType({
                 owner_surname: { type: GraphQLString },
                 address: { type: GraphQLString }
             },
-            resolve(args) {
+            resolve(parent, args) {
                 let car = new Car({
                     number: args.number,
                     release_date: args.release_date,
@@ -91,7 +91,7 @@ const Mutation = new GraphQLObjectType({
                 owner_surname: { type: GraphQLString },
                 address: { type: GraphQLString }
             },
-            resolve(args) {
+            resolve(parent, args) {
                 return Car.findByIdAndUpdate(args.id, {
                     number: args.number,
                     release_date: args.release_date,
@@ -106,7 +106,7 @@ const Mutation = new GraphQLObjectType({
         deleteCar: {
             type: CarType,
             args: { id: { type: GraphQLID } },
-            resolve(args) {
+            resolve(parent, args) {
                 return Car.findByIdAndDelete(args.id);
             }
         }
