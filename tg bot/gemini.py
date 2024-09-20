@@ -2,9 +2,10 @@ from telegram import Update, ReplyKeyboardMarkup
 from telegram.constants import ChatAction
 from telegram.ext import Application, MessageHandler, CommandHandler, ContextTypes, filters
 import google.generativeai as genai
+from environs import Env
 
-TOKENTG = "7522552840:AAEwpCc3wV-9hJmED9oPJ3Y1C6LvnR6_j9s"
-API_KEY = "AIzaSyA885_ZxwNgKhsB5j8ZjCSgEwrv2zHGzD8"
+TOKENTG = env.get('TOKENTG')
+API_KEY = env.get('API_KEY')
 
 genai.configure(api_key=API_KEY)
 
